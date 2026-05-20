@@ -24,7 +24,8 @@ const stripe =
 // =====================================
 
 router.post(
-  "/api/stripe-webhook",
+
+  "/",
 
   express.raw({
     type:
@@ -86,7 +87,10 @@ router.post(
           session.id
         );
 
+        // =====================================
         // FIND SESSION
+        // =====================================
+
         const savedSession =
           await GuestCheckoutSession
             .findOne({
@@ -107,7 +111,10 @@ router.post(
           });
         }
 
+        // =====================================
         // UPDATE PAYMENT STATUS
+        // =====================================
+
         savedSession.paymentStatus =
           "paid";
 
@@ -121,14 +128,14 @@ router.post(
         // =====================================
 
         const gipOrder =
-  await createGipOrder({
+          await createGipOrder({
 
-    orderType:
-      savedSession.orderType,
+            orderType:
+              savedSession.orderType,
 
-    payload:
-      savedSession.quotePayload,
-  });
+            payload:
+              savedSession.quotePayload,
+          });
 
         console.log(
           "GIP ORDER CREATED:",
@@ -144,7 +151,7 @@ router.post(
       }
     }
 
-    res.json({
+    return res.json({
       received: true,
     });
   }
