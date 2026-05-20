@@ -27,7 +27,7 @@ router.post(
 
         currency,
 
-        payload,
+        quotePayload,
 
         guestData,
       } = req.body;
@@ -38,7 +38,7 @@ router.post(
 
       if (
         !amount ||
-        !payload ||
+        !quotePayload ||
         !orderType
       ) {
 
@@ -66,8 +66,7 @@ router.post(
 
           orderType,
 
-          quotePayload:
-            payload,
+          quotePayload,
 
           guestData,
         });
