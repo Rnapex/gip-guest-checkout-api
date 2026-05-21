@@ -36,13 +36,34 @@ const guestCheckoutSchema =
         default: "pending",
       },
 
+      // =====================================
+      // GIP ORDER
+      // =====================================
+
       gipOrderId: {
         type: String,
+      },
+
+      orderCode: {
+        type: String,
+      },
+
+      trackOrderUrl: {
+        type: String,
+      },
+
+      orderCreated: {
+        type: Boolean,
+        default: false,
       },
 
       gipOrderResponse: {
         type: Object,
       },
+
+      // =====================================
+      // META
+      // =====================================
 
       completedAt: {
         type: Date,
@@ -50,6 +71,7 @@ const guestCheckoutSchema =
     },
     {
       timestamps: true,
+
       collection:
         "guest_checkout",
     }
