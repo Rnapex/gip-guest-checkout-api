@@ -3,6 +3,10 @@ import mongoose from "mongoose";
 const guestCheckoutSessionSchema =
   new mongoose.Schema(
     {
+      // =====================================
+      // STRIPE
+      // =====================================
+
       sessionId: {
         type: String,
         required: true,
@@ -28,6 +32,14 @@ const guestCheckoutSessionSchema =
         default: "cad",
       },
 
+      stripeResponse: {
+        type: Object,
+      },
+
+      // =====================================
+      // ORDER
+      // =====================================
+
       orderType: {
         type: String,
         enum: [
@@ -47,16 +59,34 @@ const guestCheckoutSessionSchema =
         required: true,
       },
 
+      // =====================================
+      // GIP RESPONSE
+      // =====================================
+
       gipOrderId: {
         type: String,
       },
 
-      stripeResponse: {
+      orderCode: {
+        type: String,
+      },
+
+      trackOrderUrl: {
+        type: String,
+      },
+
+      orderCreated: {
+        type: Boolean,
+        default: false,
+      },
+
+      gipOrderResponse: {
         type: Object,
       },
     },
     {
       timestamps: true,
+
       collection:
         "guest_checkout_sessions",
     }
