@@ -96,7 +96,8 @@ router.post(
           success: false,
 
           message:
-            err.message,
+            err.message ||
+            "Failed to create Stripe session",
         });
     }
   }
